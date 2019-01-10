@@ -1,0 +1,47 @@
+﻿
+.login {
+    height: 50px;
+}
+
+.login.ng-enter {
+    transition: 2s linear all;
+}
+
+/*Quando os dados são gerados*/
+.login.ng-enter {
+    opacity: 0;
+}
+
+/*Quando os dados são gerados e aparecerem*/
+.login.ng-enter-active {
+    opacity: 1;
+    max-height: 100%;    
+}
+
+.ngv.ng-enter {
+    opacity: 0;
+    transition: 1s linear all;
+}
+
+.ngv.ng-enter-active {
+    opacity: 1;
+}
+
+.ngv.ng-leave {
+    opacity: 1;
+    transition: 1s linear all;
+}
+
+.ngv.ng-leave-active {
+    opacity: 0;
+}
+
+.tbl.ng-enter {
+    opacity: 0;
+    transition: 1s linear all;
+}
+
+.tbl.ng-enter-active {
+    opacity: 1;
+    background-color: blueviolet;
+}

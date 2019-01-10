@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+<head>
+    <title>Exemplo de Escopos</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="bg-danger" ng-controller="controller1">
+        Controler 1
+        <br/>
+        <input type="text" ng-model="nome" /> {{nome}}
+        <div class="bg-primary" ng-controller="controller2">
+            <br/>
+            Controler 2
+            <input type="text" ng-model="nome" /> {{nome}}
+        </div>
+
+    </div>
+    <script src="Scripts/angular.js"></script>
+    <script type="text/javascript">
+
+        var app = angular.module('app', []);
+
+        app.controller('controller1', controller1);
+        controller1.$inject = ['$scope'];
+
+        function controller1($scope) {
+            $scope.nome = "";
+        }
+        app.controller('controller2', controller2);
+
+        controller2.$inject = ['$scope'];
+
+        function controller2($scope) {
+        }
+
+    </script>
+</body>
+</html>

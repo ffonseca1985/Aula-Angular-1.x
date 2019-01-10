@@ -1,0 +1,54 @@
+﻿<!--Formulario de Filtro-->
+<form class="form-horizontal tableHome">
+    <div class="form-group">
+        <div class="col-xs-3">
+            <input type="text" class="form-control" ng-model="filtro.nome" />
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" ng-model="filtro.email" />
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" ng-model="filtro.salario" />
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" ng-model="filtro" />
+        </div>
+    </div>
+</form>
+
+<!-- Usa-se ng-hide para escoder algum elemento HTML-->
+<!-- Usa-se ng-shown para mostrar algum elemento HTML-->
+<div class="table-responsive tableHome" ng-hide="tbUsuario.length == 0">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr ng-style="{background:'#FF5555'}">
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Salario</th>
+                <th>Data Nascimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <!--Podemos encadiar os filtros através do |-->
+            <!--Temos o OrderBy {variaver}:{bool} -->
+            <!--limitTo -> Defini um limite -->
+
+            <tr class="tbl" ng-repeat="usuario in tbUsuario | usuarioFilter | filter : filtro | orderBy: 'nome' : false | limitTo: 10"
+                ng-click="getUsuarioSelecionado(usuario) ">
+
+                <td>{{$index + 1 }}</td>
+                <!--Filtro é iniciado com o |-->
+                <td>{{usuario.nome | lowercase}}</td>
+                <td>{{usuario.email | uppercase}}</td>
+                <td>{{usuario.telefone}}</td>
+                <td>{{usuario.salario | currency}}</td>
+                <td>{{usuario.dataNascimento | date : 'dd/MM/yyyy'}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="text-center"> {{data.Dia + '-' + data.Mes +  '-' + data.Ano}} </p>
+</div>

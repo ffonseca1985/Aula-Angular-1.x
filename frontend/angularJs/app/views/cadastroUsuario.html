@@ -1,0 +1,115 @@
+﻿<div class="container" ng-controller="homeController">
+    
+    <!--Toda vez que um formulario é iniciado é gerado um objeto interno!!!-->
+
+    <form class="form-horizontal form"
+          name="formularioCadastro"
+          ng-submit="addUsuario(formulario, formularioCadastro)">
+
+        <!--Pre => Formatação de Código-->
+        <!--  (| json) => Formatação -->
+        <!--<pre>{{formularioCadastro | json}}</pre>-->
+
+
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label class="control-label">Nome</label>
+            </div>
+            <div class="col-xs-10" ng-class="{'text-danger': formularioCadastro.nome.$invalid}">
+                <!--É necessário para que tenha validação que o controle do formulario tenha
+                    um modelo (ng-model) -->
+                <input type="text"
+                       class="form-control"
+                       placeholder="Adicione seu nome"
+                       ng-model="formulario.nome"
+                       name="nome"
+                       required />
+
+                <!--vamos observar o elemento abaixo-->
+                <!--Para que eu analise o controle basta digitar o nome do pai (Form) + o seu nome -->
+                <!--Neste caso temos formularioCadastro.nome => formularioCadastro (Pai) e
+                    nome (Filho) -->
+                <!--Diretivas =>
+                    ng-show: Dado uma condição ele aparece
+                    ng-hide: Dado uma condição ele desaparece
+                    -->
+                <!--$pristine => Virgem !!-->
+                <!--Começa com true porém ao tocar não se torna mais virgem -->
+                <p ng-show="formularioCadastro.nome.$invalid &&
+                            !formularioCadastro.nome.$pristine">
+                    O usuário deve ser informado
+                </p>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label class="control-label">
+                    Email
+                </label>
+            </div>
+            <div class="col-xs-10">
+                <input type="email"
+                       required
+                       name="email"
+                       ng-model="formulario.email"
+                       class="form-control"
+                       placeholder="Digite o seu email" />
+                <!--Os erros aparecem por demanda-->
+                <p ng-show="formularioCadastro.email.$error.required &&
+                            !formularioCadastro.email.$pristine">
+                    Favor digitar o email
+                </p>
+                <p ng-show="formularioCadastro.email.$error.email &&
+                            !formularioCadastro.email.$pristine">
+                    Favor digitar um email válido
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label class="control-label"> Telefone </label>
+            </div>
+            <div class="col-xs-10">
+                <!--ng-pattern => valida um padrão (Regex.math) em um campo-->
+                <input class="form-control"
+                       name="telefone"
+                       ng-model="formulario.telefone"
+                       required
+                       placeholder="Digite o Telefone"
+                       ng-pattern="/^[0-9]{5}-[0-9]{4}$/" />
+                <!--<pre>{{formularioCadastro.telefone | json}}</pre>-->
+            </div>
+        </div>
+        
+        <!--Profissoes-->
+        
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label class="control-label"> Profissões </label>
+            </div>
+            <div class="col-xs-10">
+                <!--ng-options -> Faz o trabalho do select do HTML puro -->
+                <select class="form-control"
+                        ng-model="formulario.profissao"
+                        ng-options="profissao.nome for profissao in profissoes">
+                    <option value="">Selecione uma profissão</option>
+                </select>
+            </div>
+        </div>
+        
+        <!--Submit-->
+        <div class="form-group">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-10">
+                <!--Desabilitar o botão caso o formulario seja inválido-->
+                <!--Existe uma diretiva chamada ng-disable => desabilita algo dada uma condição
+                    ,    -->
+                <btn-submit></btn-submit>
+            </div>
+        </div>
+    </form>
+    <!--Diretiva usada para apresentar os usuarios cadastrados-->
+    <tabela-usuario xtb="usuarios" data="data"></tabela-usuario>
+
+</div>

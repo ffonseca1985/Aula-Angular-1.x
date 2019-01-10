@@ -1,0 +1,52 @@
+﻿
+<!--Página de Login-->
+<!--Usuario, senha e o submit -->
+
+<div class="container">
+    <form class="form-horizontal form" ng-submit="login(login)">
+        <!--Login-->
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label class="control-label">Login</label>
+            </div>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" ng-model="login.userName" />
+            </div>
+        </div>
+        <!--Senha-->
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label class="control-label">Senha</label>
+            </div>
+            <div class="col-xs-10">
+                <input type="password" ng-model="login.password"
+                       class="form-control"/>
+            </div>
+        </div>
+        
+        <!--Submit-->
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label class="control-label"></label>
+            </div>
+            <div class="col-xs-10">
+                <button type="submit" 
+                        class="btn btn-default form-control" >
+                    <span class="glyphicon glyphicon-plus">
+                        Login
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <!--Informação de logado ou não-->
+        <div class="form-group login" ng-if="status!=''">
+            <div class="col-xs-12">
+                <div class="alert alert-danger">
+                    {{status}}
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
